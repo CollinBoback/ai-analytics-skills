@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- Sanitized sample Tableau workbook for the lineage lab. Structurally realistic, no real systems. -->
+<workbook version='2021.4' source-platform='win'>
+  <datasources>
+    <datasource caption='Revenue Retention' name='federated.revenue_retention' inline='true'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='reporting-sqlserver' name='sqlserver.reporting'>
+            <!-- Sanitized: generic host/db placeholders only -->
+            <connection class='sqlserver' server='REPORTING_SQL_HOST' dbname='reporting_dw' authentication='sspi' />
+          </named-connection>
+        </named-connections>
+        <relation connection='sqlserver.reporting' name='Custom SQL Query' type='text'>
+SELECT cohort_month, revenue, customers
+FROM dbo.vw_revenue_retention
+WHERE cohort_month &gt;= DATEADD(MONTH, -12, CAST(GETDATE() AS date))
+        </relation>
+        <cols>
+          <map key='[cohort_month]' value='[Custom SQL Query].[cohort_month]' />
+          <map key='[revenue]' value='[Custom SQL Query].[revenue]' />
+          <map key='[customers]' value='[Custom SQL Query].[customers]' />
+        </cols>
+      </connection>
+      <column datatype='date' name='[cohort_month]' role='dimension' type='ordinal' />
+      <column datatype='real' name='[revenue]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[customers]' role='measure' type='quantitative' />
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Revenue Retention by Cohort'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Revenue Retention' name='federated.revenue_retention' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Finance Overview'>
+      <zones>
+        <zone name='Revenue Retention by Cohort' />
+      </zones>
+    </dashboard>
+  </dashboards>
+</workbook>

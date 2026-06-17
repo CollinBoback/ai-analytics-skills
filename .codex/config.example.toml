@@ -1,0 +1,32 @@
+# Example Codex CLI config for the AI Analytics Skills workshop.
+# Copy to ~/.codex/config.toml (or this repo's .codex/config.toml) and adjust.
+# This file is an EXAMPLE — never commit real endpoints, tokens, or internal server names.
+
+# Plan/agent posture: the assistant may edit files in this repo, but writes to shared
+# systems (catalog, database) require explicit approval. See rules/workshop.rules.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false
+
+experimental_use_rmcp_client = true
+
+# --- Catalog MCP (placeholder) ---------------------------------------------
+# Read-only catalog search is free; the WRITE tool requires approval.
+# Replace url/env with your own catalog MCP. Do not hardcode secrets.
+[mcp_servers.catalog]
+url = "https://catalog-mcp.example.invalid/mcp"
+env = { CATALOG_TOKEN = "${CATALOG_TOKEN}" }
+
+# Require human approval before any catalog write.
+[mcp_servers.catalog.tools.update_object]
+approval_mode = "approve"
+
+[mcp_servers.catalog.tools.delete_object]
+approval_mode = "approve"
+
+# --- Optional filesystem/git MCP -------------------------------------------
+# [mcp_servers.git]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-git", "--repository", "."]

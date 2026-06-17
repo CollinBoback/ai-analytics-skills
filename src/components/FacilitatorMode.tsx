@@ -6,58 +6,59 @@ const WORKSHOP_STEPS = [
   {
     id: "entry",
     phase: "Kickoff",
-    progressLabel: "Setup 1/1",
+    progressLabel: "Setup 1/2",
     title: "Establish Entry Mode",
-    script: "Quick heads-up: this should take about 75-90 minutes and guide us through 4 main phases. How do we want to run this today?",
+    script: "Quick heads-up: this runs about 75-90 minutes across four labs. How do we want to run this today?",
     options: ["1. Guided Mode (Step-by-step)", "2. Context Dump (Fast track)", "3. Best Guess (Assumptions)"],
     fallback: "If the room is mixed, default to Guided Mode (1)."
   },
   {
-    id: "install_1",
-    phase: "Install",
-    progressLabel: "Install Q1/2",
-    title: "Verify Marketplace Access",
-    script: "Has everyone successfully found and installed 'Codex - OpenAI\\'s coding agent' from the VS Code Marketplace?",
-    options: ["1. All good", "2. Blocked by firewall", "3. Need more time"],
-    fallback: "If stalled for >2 mins, switch blocked users to Observer Mode (pairing)."
-  },
-  {
-    id: "install_2",
-    phase: "Install",
-    progressLabel: "Install Q2/2",
-    title: "Authentication Check",
-    script: "Are we all signed in and seeing the Codex sidebar panel?",
-    options: ["1. Ready to go", "2. Auth errors", "3. Panel missing"],
-    fallback: "Sidebar missing? Have them restart VS Code."
-  },
-  {
-    id: "orient_1",
-    phase: "Orient",
-    progressLabel: "Context Q1/1",
-    title: "Set Autonomy Mode",
-    script: "Open the BI workspace. What level of autonomy should we give Codex for this lab?",
-    options: ["1. Chat (Planning only)", "2. Agent (Local edits)", "3. Full Access"],
+    id: "setup",
+    phase: "Kickoff",
+    progressLabel: "Setup 2/2",
+    title: "Workspace and Autonomy",
+    script: "Open the repo in your AI assistant and have it read AGENTS.md. What level of autonomy should we use for the labs?",
+    options: ["1. Chat (Planning only)", "2. Agent (Local edits to outputs/)", "3. Full Access"],
     decision: true,
-    fallback: "Strongly recommend Agent mode (2) for this exercise."
+    fallback: "Recommend Agent mode (2), with all writes kept inside this repo."
   },
   {
-    id: "ask_decision",
-    phase: "Ask Patterns",
+    id: "lab1",
+    phase: "Find it",
+    progressLabel: "Lab 1/1",
+    title: "Trace Tableau Lineage",
+    script: "Point the assistant at the workbook XML and the SQL objects. Did it separate confirmed lineage from inferred?",
+    options: ["1. Clear lineage + diagram", "2. Mixed confirmed/inferred", "3. Needs more files"],
+    fallback: "If unsure, require it to list unknowns as owner questions before moving on."
+  },
+  {
+    id: "lab2",
+    phase: "Tune it",
+    progressLabel: "Lab 1/1",
+    title: "Triage SQL Performance",
+    script: "Run phase 1 (diagnose, no rewrite), then phase 2 (smallest safe rewrite). Did we get a validation query?",
+    options: ["1. Validated rewrite", "2. Rewrite, no proof yet", "3. Escalate to DBA"],
+    decision: true,
+    fallback: "No before/after evidence? Do not accept the rewrite. Collect baseline first."
+  },
+  {
+    id: "lab3",
+    phase: "Govern it",
     progressLabel: "Decision Point",
-    title: "Select First Prompt Recipe",
-    script: "We have 6 BI prompt patterns. Which one represents your most common daily challenge? We'll run this one first.",
-    options: ["1. Explain a KPI", "2. Debug SQL", "3. Investigate Variance", "Other (specify)"],
+    title: "Repair Catalog Context",
+    script: "We are drafting catalog changes to a local diff before any write. Run solo or split into subagents?",
+    options: ["1. Single pass", "2. Three subagents + consolidate", "Other (specify)"],
     decision: true,
-    fallback: "If no consensus, pick 'Debug SQL' (2) as it's the most universally applicable."
+    fallback: "Either works. The non-negotiable is: local diff with cited evidence before any catalog write."
   },
   {
-    id: "verify_1",
+    id: "verify",
     phase: "Verify",
-    progressLabel: "Verification Q1/1",
+    progressLabel: "Verification 1/1",
     title: "Run the Safeguard Checks",
-    script: "Review Codex's output. What is your primary check?",
-    options: ["1. Metric accuracy", "2. No PII exposed", "3. Logic/Join correctness"],
-    fallback: "Remind the room: The analyst remains accountable for the dashboard claim, not Codex."
+    script: "Review each artifact. What is your primary check before it ships?",
+    options: ["1. Metric accuracy", "2. No PII / public-safe", "3. Logic/Join correctness"],
+    fallback: "Remind the room: the analyst remains accountable for the claim, not the AI."
   }
 ];
 

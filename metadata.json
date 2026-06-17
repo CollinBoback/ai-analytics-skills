@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "AI Analytics Skills for BI Analysts",
+  "description": "A hands-on, repo-centered workshop that teaches BI analysts to trace dashboard lineage, tune SQL safely, repair catalog context, and verify AI-assisted answers before they reach a dashboard.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

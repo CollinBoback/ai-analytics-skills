@@ -22,7 +22,7 @@ export function PresentationMode() {
         <div className="relative bg-white w-full max-w-[1280px] aspect-video shadow-2xl rounded-xl overflow-hidden flex flex-col ring-1 ring-slate-200">
            
            {/* Header Area (Optional based on slide) */}
-           {slide.id !== 1 && slide.id !== 16 && (
+           {!slide.full && (
              <div className="px-12 pt-12 pb-4 flex flex-col z-10">
                {slide.badge && (
                  <div className="inline-block px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded uppercase mb-2 self-start tracking-wide">
@@ -39,14 +39,14 @@ export function PresentationMode() {
            )}
 
            {/* Content Area */}
-           <div className="flex-1 px-12 pb-12 overflow-y-auto">
+           <div className={cn("flex-1 overflow-y-auto", slide.full ? "" : "px-12 pb-12")}>
              {slide.content}
            </div>
 
            {/* Slide Footer */}
-           {slide.id !== 1 && slide.id !== 16 && (
+           {!slide.full && (
               <div className="absolute bottom-6 left-12 right-12 flex justify-between items-center text-xs text-slate-400 z-10">
-                <div>Sources: OpenAI Codex IDE docs and Visual Studio Marketplace, accessed Jun 17, 2026</div>
+                <div>AI Analytics Skills for BI Analysts — the repository is the product</div>
                 <div className="font-bold text-blue-900 text-sm">
                    {slide.id < 10 ? `0${slide.id}` : slide.id}
                 </div>
@@ -60,7 +60,7 @@ export function PresentationMode() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Presentation className="w-4 h-4 text-slate-400" />
-            <span className="text-[10px] font-medium text-slate-500">Instructor: Jordan Mitchell</span>
+            <span className="text-[10px] font-medium text-slate-500">Facilitator mode</span>
           </div>
           <div className="h-4 w-[1px] bg-slate-200"></div>
           <span className="text-[10px] text-slate-400 font-mono">Slide {currentIdx + 1} of {slides.length}</span>

@@ -19,11 +19,11 @@ export default function App() {
       <header className="h-12 bg-[#1F2937] flex items-center px-4 justify-between border-b border-slate-700 text-white shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-orange-500 rounded flex items-center justify-center font-bold text-xs">CX</div>
+            <div className="w-7 h-7 bg-blue-600 rounded flex items-center justify-center font-bold text-xs">AI</div>
             <div className="flex items-center gap-2 text-sm">
               <span className="opacity-60">Workshops</span>
               <span className="opacity-60">/</span>
-              <span className="font-medium">BI-Codex-Mastery</span>
+              <span className="font-medium">AI Analytics Skills for BI Analysts</span>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="text-xs bg-slate-700 px-3 py-1 rounded-full border border-slate-600">Codex Ext Demo</div>
+          <div className="text-xs bg-slate-700 px-3 py-1 rounded-full border border-slate-600">Repo-centered workshop</div>
           <div className="h-6 w-6 rounded-full bg-slate-400"></div>
         </div>
       </header>

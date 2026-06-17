@@ -1,0 +1,30 @@
+# Workshop rules / permissions
+# Human-readable policy the assistant must follow in this repo.
+# Pairs with .codex/hooks.json (enforcement) and AGENTS.md (standards).
+
+[allow]
+# Read-only exploration is always allowed.
+- read any file in this repo
+- read-only catalog search and object lookup
+- run validation queries that do not modify data
+- create or edit artifacts under outputs/
+
+[require_approval]
+# These pause for an explicit human yes.
+- catalog write/update/delete (must have a reviewed local diff first)
+- running any command that writes to a shared database
+- editing a shared stored procedure or view definition
+- network access to non-allowlisted endpoints
+
+[block]
+# Never allowed.
+- exposing PII, credentials, secrets, or production extracts
+- creating or altering production indexes
+- destructive catalog or database operations
+- adding real server, database, linked-server, owner, or proprietary names to any file
+
+[escalation]
+# When a rule blocks progress, the assistant should:
+- explain what it wanted to do and why it was blocked
+- propose the safe alternative (for example, draft a diff to outputs/ for review)
+- list the owner question that needs a human answer

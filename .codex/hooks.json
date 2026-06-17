@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/codex-hooks.json",
+  "description": "Lifecycle hooks for the AI Analytics Skills workshop. These enforce the safe-write and evidence rules from AGENTS.md. Commands are illustrative; wire them to your own scripts.",
+  "hooks": {
+    "preToolUse": [
+      {
+        "name": "block-secrets-in-prompt",
+        "match": { "tool": "*" },
+        "command": "node .codex/scripts/check-secrets.mjs",
+        "onFailure": "block",
+        "description": "Scan prompt/args for credentials, tokens, PII, or production extracts before any tool runs."
+      },
+      {
+        "name": "require-evidence-for-catalog-write",
+        "match": { "tool": "catalog.update_object" },
+        "command": "node .codex/scripts/check-catalog-diff.mjs",
+        "onFailure": "block",
+        "description": "Stop catalog writes unless a reviewed local diff (outputs/catalog-remediation.md) with cited evidence exists."
+      }
+    ],
+    "postToolUse": [
+      {
+        "name": "validate-generated-docs",
+        "match": { "tool": "fs.write" },
+        "command": "node .codex/scripts/validate-docs.mjs",
+        "onFailure": "warn",
+        "description": "Validate generated Markdown/Mermaid against the templates and the data-flow standard."
+      },
+      {
+        "name": "link-checker",
+        "match": { "tool": "fs.write" },
+        "command": "node .codex/scripts/check-links.mjs",
+        "onFailure": "warn",
+        "description": "Run a link checker over generated docs; flag broken references."
+      }
+    ]
+  }
+}

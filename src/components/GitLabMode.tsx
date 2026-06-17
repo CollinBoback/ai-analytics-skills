@@ -29,10 +29,10 @@ export function GitLabMode() {
         <div className="p-4 border-b border-slate-200">
           <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Repository Index</div>
           <div className="flex items-center gap-2 font-bold text-slate-800 text-sm mb-1">
-            <Book className="w-4 h-4 text-purple-600" />
-            <span>analytics-workshop</span>
+            <Book className="w-4 h-4 text-blue-600" />
+            <span>ai-analytics-skills</span>
           </div>
-          <div className="text-[10px] text-slate-500 font-mono ml-6">Codex for BI Analysts</div>
+          <div className="text-[10px] text-slate-500 font-mono ml-6">AI Analytics Skills for BI Analysts</div>
         </div>
 
         {/* Action row */}
