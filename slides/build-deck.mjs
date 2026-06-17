@@ -164,7 +164,7 @@ function markerBlock(slide, x, y, w, label, desc, { mark = "", markFill = C.teal
   s.addText("An assistant inside a BI workspace can read Tableau XML, SQL files, stored procedures, view and metric definitions, catalog docs, templates, and validation artifacts — and cite the evidence it used.",
     { x: 0.95, y: top + 1.06, w: 8.2, h: 0.8, fontFace: FONT_B, fontSize: 13.5, color: C.ink, valign: "middle", margin: 0, lineSpacingMultiple: 1.08 });
 
-  pillRow(s, ["Multi-file context", "Repo-aware reasoning", "Tool / catalog access", "Evidence-backed artifacts", "Reviewable output"], 0.6, top + 2.15, 9.45);
+  pillRow(s, ["Multi-file context", "Repo-aware reasoning", "Catalog access via MCP", "Reviewable artifacts"], 0.6, top + 2.15, 9.45);
 }
 
 // ================================================ SLIDE 3 — CHATBOT VS ASSISTANT
@@ -197,8 +197,8 @@ function markerBlock(slide, x, y, w, label, desc, { mark = "", markFill = C.teal
 
   card(s, 0.6, top, 8.9, 1.45, { fill: C.tealTint, border: false });
   s.addText([
-    { text: "Open context   →   ask with constraints   →   inspect evidence", options: { breakLine: true } },
-    { text: "→   propose a change or artifact   →   validate   →   communicate caveats", options: {} },
+    { text: "Open context   →   ask with constraints   →   inspect evidence   →", options: { breakLine: true } },
+    { text: "propose a change or artifact   →   validate   →   communicate caveats", options: {} },
   ], { x: 0.8, y: top + 0.1, w: 8.5, h: 1.25, fontFace: FONT_B, fontSize: 16, bold: true, color: C.teal, align: "center", valign: "middle", margin: 0, lineSpacingMultiple: 1.35 });
 
   card(s, 0.6, top + 1.65, 8.9, 1.1, { fill: C.white });
@@ -362,7 +362,7 @@ labSlide({
     s.addText(d[0], { x: cx, y: yy + 0.28, w: cw, h: 0.35, fontFace: FONT_B, fontSize: 15, bold: true, color: C.teal, align: "center", margin: 0 });
     s.addText(d[1], { x: cx + 0.12, y: yy + 0.66, w: cw - 0.24, h: 0.5, fontFace: FONT_B, fontSize: 11, color: C.slate, align: "center", valign: "top", margin: 0 });
   });
-  codeCard(s, 0.6, yy + ch + 0.22, 8.9, 1.1, [
+  codeCard(s, 0.6, yy + ch + 0.2, 8.9, 1.45, [
     "Before I use this answer, list every assumption, source file,",
     "query, unresolved risk, and manual check. Separate what",
     "you confirmed from what you inferred.",

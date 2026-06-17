@@ -9,3 +9,7 @@ coverage/
 
 # Workshop participant scratch space for lab artifacts
 outputs/
+
+# Local visual QA scratch space for the workshop deck
+slides/.render/
+
