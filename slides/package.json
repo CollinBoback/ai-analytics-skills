@@ -1,0 +1,13 @@
+{
+  "name": "ai-analytics-skills-slides",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Generator for the AI Analytics Skills workshop deck (the .pptx is the source of truth).",
+  "scripts": {
+    "build": "node build-deck.mjs"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}
