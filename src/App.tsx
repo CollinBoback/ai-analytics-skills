@@ -6,11 +6,12 @@
 import React, { useState } from "react";
 import { PresentationMode } from "./components/PresentationMode";
 import { GitLabMode } from "./components/GitLabMode";
-import { Layout, Presentation, GitMerge } from "lucide-react";
+import { FacilitatorMode } from "./components/FacilitatorMode";
+import { Layout, Presentation, GitMerge, ListChecks } from "lucide-react";
 import { cn } from "./utils/cn";
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<"presentation" | "gitlab">("presentation");
+  const [activeTab, setActiveTab] = useState<"presentation" | "gitlab" | "facilitator">("presentation");
 
   return (
     <div className="flex flex-col h-screen w-full bg-slate-900 overflow-hidden font-sans">
@@ -53,6 +54,18 @@ export default function App() {
             <GitMerge className="w-3.5 h-3.5" />
             GitLab Repository
           </button>
+          <button
+            onClick={() => setActiveTab("facilitator")}
+            className={cn(
+              "flex items-center gap-2 px-4 py-1 rounded-sm text-xs font-medium transition-colors",
+              activeTab === "facilitator" 
+                ? "bg-slate-700 text-white shadow-sm" 
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-700/50"
+            )}
+          >
+            <ListChecks className="w-3.5 h-3.5" />
+            Facilitator Console
+          </button>
         </div>
 
         <div className="flex items-center gap-4">
@@ -68,6 +81,9 @@ export default function App() {
         </div>
         <div className={cn("absolute inset-0 transition-opacity duration-300", activeTab === "gitlab" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none")}>
           <GitLabMode />
+        </div>
+        <div className={cn("absolute inset-0 transition-opacity duration-300", activeTab === "facilitator" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none")}>
+          <FacilitatorMode />
         </div>
       </main>
     </div>
