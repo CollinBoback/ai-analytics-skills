@@ -37,3 +37,8 @@ This file tells any AI coding assistant (Codex CLI, Cursor, Claude Code, or simi
 - One step at a time. Show the move, let the participant try it, verify against evidence, then produce a small artifact.
 - When asked for an analysis, return: what you are confident about, what you inferred, and what needs an owner's review.
 - Stop and ask before any action that writes to a shared system (catalog, database, shared stored procedure).
+
+## Cursor Cloud specific instructions
+- The only runnable code is the optional React/Vite presentation app under `src/`; the durable product is the markdown labs/demos/templates, which need no services. Standard commands live in `README.md` and `package.json` (`npm run dev` on port `3000`, `npm run lint` = `tsc --noEmit`). There are no automated tests.
+- No backend, database, or API keys are needed to run anything. The `@google/genai`, `express`, and `dotenv` dependencies and the `GEMINI_API_KEY`/`APP_URL` entries in `.env.example` are vestigial AI Studio scaffolding — they are not imported anywhere in `src/`, so leave `.env` unset.
+- `npm run dev` serves on `0.0.0.0:3000`; if 3000 is taken (e.g. the `skill-bank` docs server) Vite does not auto-fallback here, so free the port or change `--port` rather than expecting a different port.
