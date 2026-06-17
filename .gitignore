@@ -8,4 +8,4 @@ coverage/
 !.env.example
 
 # Workshop participant scratch space for lab artifacts
-outputs/
+
